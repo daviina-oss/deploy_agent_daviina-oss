@@ -1,12 +1,41 @@
 # Automated Project Bootstrapping and Process Management
 
-Bash deployment agent for the unmodified Student Attendance Tracker.
+## Project Overview
 
-## Requirements
+This project provides a Bash-based deployment agent that automates the setup, execution, and log management of a **Student Attendance Tracker** application. The script, `deploy_agent.sh`, simplifies project initialization by creating the required directory structure, configuring application settings, managing file permissions, and handling deployment interruptions.
 
-- Bash, Python 3, `zip`, `sed`, `awk`, `head`, `chmod`, and standard Unix tools.
-- Linux, macOS (with compatible `sed -i` syntax), or a Linux environment such as WSL on Windows. The script uses GNU `sed -i`, so Linux/WSL is recommended.
-- Three original files in `templates/`: `attendance_checker.py`, `assets.csv`, `config.json`.
+The deployment agent supports three main features:
+
+1. **Deploy:** Creates the application structure, copies or generates student records, configures attendance thresholds, and launches the application.
+2. **Run:** Executes the deployed Python application, allowing instructors to record student attendance interactively.
+3. **Archive:** Organizes attendance and absence logs into separate directories using timestamped filenames for easy tracking.
+
+The script also handles **Ctrl+C (SIGINT)** and **Ctrl+Z (SIGTSTP)** during deployment by creating a ZIP backup of the incomplete project and cleaning up the working directory.
+
+The original `attendance_checker.py` remains unchanged throughout the deployment process.
+
+## System Requirements
+
+Before running the deployment agent, ensure the following requirements are met:
+
+- **Bash:** Required to execute the deployment script.
+- **Python 3:** Required to run the Student Attendance Tracker.
+- **ZIP:** Used to create backups when deployment is interrupted.
+- **Unix utilities:** `sed`, `awk`, `head`, `chmod`, and other standard command-line tools for file operations and configuration.
+- **Operating system:** Linux or Windows using WSL is recommended. The script uses GNU `sed -i`, so macOS may require adjustments for compatibility.
+
+### Required Source Files
+
+The following original files must be available in the `templates/` your directory:
+
+```text
+templates/
+├── attendance_checker.py
+├── assets.csv
+└── config.json
+```
+
+These files serve as the foundation for creating new Student Attendance Tracker instances without modifying the original Python application.
 
 ## Start
 
